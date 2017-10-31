@@ -1,6 +1,6 @@
 const Post = require('../models/post.js');
 
-module.exports = function(app) {
+module.exports = function(app) => {
 
   //CREATE
   app.post('/posts', function (req, res) {
