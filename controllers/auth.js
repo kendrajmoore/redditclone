@@ -2,7 +2,7 @@
 // SIGN UP POST
 app.post('/sign-up', function(req, res, next) {
   // Create User and JWT
-  var user = new User(req.body);
+  const user = new User(req.body);
 
   user.save(function (err) {
     if (err) { return res.status(400).send({ err: err }) }

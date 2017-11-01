@@ -7,12 +7,18 @@ module.exports = (app) => {
 
 // CREATE
 app.post('/posts/:postId/comments', function (req, res) {
-  // INSTANTIATE INSTANCE OF MODEL
-  const comment = new Comment(req.body);
+  var comment = new Comment(req.body);
 
-  // SAVE INSTANCE OF POST MODEL TO DB
-  comment.save(function (err, comment) {
-    // REDIRECT TO THE ROOT
-    return res.redirect(`/`);
+  Post.findById(req.params.id).populate('comments').exec(function (err, post) {
+  res.render('posts-show', { post: post });
+});
+
+  // Post.findById(req.params.postId).populate('comments').exec(function (err, post) {
+  //   comment.save(function (err, comment) {
+  //     post.comments.unshift(comment);
+  //     post.save();
+  //
+  //     return res.redirect(`/posts/` + post._id);
+  //   })
   })
 });

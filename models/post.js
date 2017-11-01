@@ -7,7 +7,7 @@ const PostSchema = new Schema({
   summary     : String,
   content     : String,
   comments    : [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
-  subreddit   : { type: String, required: true },
+  subreddit   : { type: String },
   author      : { type: Schema.Types.ObjectId, ref: 'User' },
   upVotes     : { type: String },
   downVotes   : { type: String },

@@ -4,11 +4,13 @@ module.exports = function(app) {
 
   //CREATE
   app.post('/posts', function (req, res) {
+      console.log(req.body)
     // INSTANTIATE INSTANCE OF POST MODEL
     const post = new Post(req.body);
 
     // SAVE INSTANCE OF POST MODEL TO DB
     post.save(function (err, post) {
+      if (err) { return console.log(err) }
       // REDIRECT TO THE ROOT
       return res.redirect(`/`);
     })
@@ -25,7 +27,7 @@ module.exports = function(app) {
   app.get('/posts/new', function (req, res) {
     res.render('posts-new', {});
   })
-
+  
   // SUBREDDIT
   app.post('/n/:subreddit', function(req, res) {
     Post.find({ subreddit: req.params.subreddit }).exec(function (err, posts) {
