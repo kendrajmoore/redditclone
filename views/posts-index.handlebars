@@ -3,19 +3,17 @@
 <section>
 {{#each posts}}
     <article>
-        <h3><a href="/post/{{this._id}}">{{this.title}}</a></h3>
-        <p>{{this.url}}</p>
+        <a href="/post/{{this._id}}">
+
+           <h3>{{this.title}}</a></h3>
+           <p>{{this.url}}</p>
          <a href="/n/{{this.subreddit}}">/n/{{this.subreddit}}</a>
         <div>{{this.summary}}</div>
     </article>
+
+    <form method="POST" action="/posts/{{this._id}}?_method=DELETE">
+        <a class="btn btn-default" href="/posts/{{this._id}}/edit" role="button">
+            Edit
+        </a>
 {{/each}}
 </section>
-<ul>
-    {{#if currentUser}}
-        <li><a href="/logout">Logout</a></li>
-    {{else}}
-        <li><a href="/login">Login</a></li>
-        <li><a href="/sign-up">Sign Up</a></li>
-    {{/if}}
-    <a href="/posts/new">create new post</a>
-</ul>

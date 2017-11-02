@@ -16,18 +16,21 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/redditclone');
 
 //
 require('./controllers/posts.js')(app);
+const checkAuth = function (req, res, next) {
+  console.log("Checking authentication");
 
-// Auth middleware
-// app.use((req, res, next) => {
-//   if (typeof req.cookies.nToken === 'undefined' || req.cookies.nToken === null) {
-//     req.user = null;
-//   } else {
-//     const token = req.cookies.nToken;
-//     const decodedToken = jwt.decode(token, { complete: true }) || {};
-//     req.user = decodedToken.payload;
-//   }
-//   next();
-// });
+  if (typeof req.cookies.nToken === 'undefined' || req.cookies.nToken === null) {
+    req.user = null;
+  } else {
+    var token = req.cookies.nToken;
+    var decodedToken = jsonwebtoken.decode(token, { complete: true }) || {};
+    req.user = decodedToken.payload;
+  }
+
+  next()
+}
+
+app.use(checkAuth)
 
 
 app.listen(3000, function () {

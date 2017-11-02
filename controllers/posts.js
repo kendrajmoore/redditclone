@@ -14,7 +14,8 @@ module.exports = function(app) {
       // REDIRECT TO THE ROOT
       return res.redirect(`/`);
     })
-  });
+  })
+
 
 
   app.get('/', function (req, res) {
@@ -23,17 +24,23 @@ module.exports = function(app) {
     })
   })
 
+
   // NEW
   app.get('/posts/new', function (req, res) {
     res.render('posts-new', {});
   })
-  
-  // SUBREDDIT
-  app.post('/n/:subreddit', function(req, res) {
-    Post.find({ subreddit: req.params.subreddit }).exec(function (err, posts) {
-      res.render('posts-index', { posts: posts });
-    })
-  });
+}
+  // //
+  // app.get('/posts/:id', function (req, res) {
+  //     Post.findById(req.params.id).exec(function (err, post) {
+  //         res.render('posts-show', { post: post});
+  //         //mark modified, add postid to comment
+      // })
 
-
-};
+  // // SUBREDDIT
+  // app.post('/n/:subreddit', function(req, res) {
+  //   Post.find({ subreddit: req.params.subreddit }).exec(function (err, posts) {
+  //     res.render('posts-index', { posts: posts });
+  //   })
+  // })
+// });

@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 // SIGN UP FORM
 // SIGN UP POST
 app.post('/sign-up', function(req, res, next) {
@@ -7,7 +9,11 @@ app.post('/sign-up', function(req, res, next) {
   user.save(function (err) {
     if (err) { return res.status(400).send({ err: err }) }
 
+    const token = jwt.sign({ _id: user._id }, process.env.SECRET, { expiresIn: "60 days" });
+    res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
+    console.log(req.cookies)
     res.redirect('/');
+  })
   })
 });
 
