@@ -26,6 +26,23 @@ app.get('/login', function(req, res, next) {
   res.render('login');
 });
 
+app.post('/login', function(req, res, next) {
+  User.findOne({ email: req.body.email }, "+password", function (err, user) {
+    if (!user) { return res.status(401).send({ message: 'Wrong email or password' }) };
+    user.comparePassword(req.body.password, function (err, isMatch) {
+      if (!isMatch) {
+        return res.status(401).send({ message: 'Wrong email or password' });
+      }
+
+      var token = jwt.sign({ _id: user._id }, process.env.SECRET, { expiresIn: "60 days" });
+      res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
+
+      res.redirect('/');
+    });
+  })
+});
+
+
 // LOGOUT
 app.get('/logout', function(req, res, next) {
   res.clearCookie('nToken');

@@ -14,15 +14,5 @@ const PostSchema = new Schema({
   voteScore   : { type: Number, default: 0 }
 });
 
-// PostSchema.pre('save', function(next){
-//   // SET createdAt AND updatedAt
-//   const now = new Date();
-//   this.updatedAt = now;
-//   if ( !this.createdAt ) {
-//     this.createdAt = now;
-//   }
-//
-//   next();
-// });
 
 module.exports = mongoose.model('Post', PostSchema);

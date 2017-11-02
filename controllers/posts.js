@@ -30,17 +30,18 @@ module.exports = function(app) {
     res.render('posts-new', {});
   })
 }
-  // //
-  // app.get('/posts/:id', function (req, res) {
-  //     Post.findById(req.params.id).exec(function (err, post) {
-  //         res.render('posts-show', { post: post});
-  //         //mark modified, add postid to comment
-      // })
 
-  // // SUBREDDIT
-  // app.post('/n/:subreddit', function(req, res) {
-  //   Post.find({ subreddit: req.params.subreddit }).exec(function (err, posts) {
-  //     res.render('posts-index', { posts: posts });
-  //   })
-  // })
+//   //
+//   app.get('/posts/:id', function (req, res) {
+//       Post.findById(req.params.id).exec(function (err, post) {
+//           res.render('posts-show', { post: post});
+//           //mark modified, add postid to comment
+//       })
+//
+//   // SUBREDDIT
+//   app.post('/n/:subreddit', function(req, res) {
+//     Post.find({ subreddit: req.params.subreddit }).exec(function (err, posts) {
+//       res.render('posts-index', { posts: posts });
+//     })
+//   })
 // });
