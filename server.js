@@ -16,6 +16,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/redditclone');
 
 //
 require('./controllers/posts.js')(app);
+
 const checkAuth = function (req, res, next) {
   console.log("Checking authentication");
 

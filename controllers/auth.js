@@ -1,10 +1,19 @@
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
+const User = require('../models/user.js');
+
+module.exports = function(app) {
 
 // SIGN UP FORM
 // SIGN UP POST
+app.get('/sign-up', function(req, res, next) {
+  console.log('error')
+  res.render('sign-up');
+});
+
 app.post('/sign-up', function(req, res, next) {
   // Create User and JWT
   const user = new User(req.body);
+  console.log(user)
 
   user.save(function (err) {
     if (err) { return res.status(400).send({ err: err }) }
@@ -15,10 +24,6 @@ app.post('/sign-up', function(req, res, next) {
     res.redirect('/');
   })
   })
-});
-
-app.get('/sign-up', function(req, res, next) {
-  res.render('sign-up');
 });
 
 // LOGIN FORM
@@ -48,4 +53,5 @@ app.get('/logout', function(req, res, next) {
   res.clearCookie('nToken');
 
   res.redirect('/');
-});
+})
+}
