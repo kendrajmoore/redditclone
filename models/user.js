@@ -1,6 +1,10 @@
-const mongoose = require('mongoose'),
-    // bcrypt = require('bcrypt'),
-    Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const bcrypt = require('bcrypt');
+
+console.log('**********************')
+console.log(bcrypt);
+console.log('**********************')
 
 const UserSchema = new Schema({
     createdAt       : { type: Date }

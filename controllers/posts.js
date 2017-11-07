@@ -4,6 +4,15 @@ var User = require('../models/user');
 
 module.exports = function(app) {
 
+  app.get('/', (req, res) => {
+    console.log(req.user);
+    res.render('home')
+  });
+
+  app.get('/posts/new', (req, res) => {
+    res.render('posts-new')
+  })
+
   /**********************************************
   /
   / Up / Down vote
