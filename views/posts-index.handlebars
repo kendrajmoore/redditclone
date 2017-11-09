@@ -3,16 +3,16 @@
 <section>
 {{#each posts}}
     <article>
-        <a href="/post/{{this._id}}">
+        <a href="/post/{{post._id}}">
 
-           <h3>{{this.title}}</a></h3>
-           <p>{{this.url}}</p>
-         <a href="/n/{{this.subreddit}}">/n/{{this.subreddit}}</a>
-        <div>{{this.summary}}</div>
+           <h3>{{post.title}}</a></h3>
+           <p>{{post.url}}</p>
+         <a href="/n/{{post.subreddit}}">/n/{{post.subreddit}}</a>
+        <div>{{post.summary}}</div>
     </article>
 
-    <form method="POST" action="/posts/{{this._id}}?_method=DELETE">
-        <a class="btn btn-default" href="/posts/{{this._id}}/edit" role="button">
+    <form method="POST" action="/posts/{{post._id}}?_method=DELETE">
+        <a class="btn btn-default" href="/posts/{{post._id}}/edit" role="button">
             Edit
         </a>
 {{/each}}

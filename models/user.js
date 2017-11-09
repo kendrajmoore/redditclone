@@ -11,7 +11,7 @@ const UserSchema = new Schema({
   , updatedAt       : { type: Date }
 
   , password        : { type: String, select: false }
-  , username        : { type: String, required: true }
+  , username        : { type: String, required: false }
 });
 
 UserSchema.pre('save', function(next){

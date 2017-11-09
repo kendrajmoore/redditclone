@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user.js');
 
 
-module.exports = function(app) {
+module.exports = (app) => {
 
   // SIGN UP FORM
   // SIGN UP POST

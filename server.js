@@ -25,8 +25,8 @@ const checkAuth = function (req, res, next) {
   if (typeof req.cookies.nToken === 'undefined' || req.cookies.nToken === null) {
     req.user = null;
   } else {
-    var token = req.cookies.nToken;
-    var decodedToken = jsonwebtoken.decode(token, { complete: true }) || {};
+    const token = req.cookies.nToken;
+    const decodedToken = jsonwebtoken.decode(token, { complete: true }) || {};
     req.user = decodedToken.payload;
   }
 
@@ -38,6 +38,7 @@ app.use(checkAuth)
 //
 require('./controllers/posts.js')(app);
 require('./controllers/auth.js')(app);
+require('./controllers/comments.js')(app);
 
 
 app.listen(3000, function () {

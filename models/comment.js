@@ -1,8 +1,8 @@
 const mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+const    Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
-  comment            : [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
+  content            : [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 
 });
 
