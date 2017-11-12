@@ -1,17 +1,13 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 
-console.log('**********************')
-console.log(bcrypt);
-console.log('**********************')
-
 const UserSchema = new Schema({
-    createdAt       : { type: Date }
-  , updatedAt       : { type: Date }
+    createdAt       : { type: Date },
+    updatedAt       : { type: Date },
 
-  , password        : { type: String, select: false }
-  , username        : { type: String, required: false }
+   password        : { type: String, select: false },
+   username        : { type: String, required: false }
 });
 
 UserSchema.pre('save', function(next){

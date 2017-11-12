@@ -1,6 +1,5 @@
-
-var Post = require('../models/post');
-var User = require('../models/user');
+const Post = require('../models/post');
+const User = require('../models/user');
 
 module.exports = (app) => {
 
@@ -13,11 +12,6 @@ module.exports = (app) => {
     res.render('posts-new')
   })
 
-  /**********************************************
-  /
-  / Up / Down vote
-  /
-  /*********************************************/
 
       app.post('/posts/:id/vote-up', function (req, res) {
         Post.findById(req.params.id).exec(function (err, post) {
@@ -41,18 +35,6 @@ module.exports = (app) => {
         res.redirect(post.url)
     });
 });
-
-  // CREATE
-  app.post('/posts', function(req,res) {
-      // INSTANTIATE INSTANCE OF POST MODEL
-      var post = new Post(req.body);
-      post.url = "/posts/" + post._id;
-      post.author = req.user.username;
-      post.save(function (err) {
-          if(err){console.log(err)};
-          res.redirect(post.url)
-      });
-  });
 
   //Individual Post Page
   app.get('/posts/:id', function (req, res) {

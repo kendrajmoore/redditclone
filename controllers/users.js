@@ -1,17 +1,15 @@
+const User = require('../models/user');
+
 module.exports = (app) => {
-
-// **************************** USER ******************************
-
-// User Routes
-    app.get('/user', function (req, res) {
-        //res.send("Its working");
-        res.render('user-new', {});
+  app.get('/user/:username', (req, res) => {
+    const username = req.params.username;
+    User.findOne({ username }).then((user) => {
+      console.log(user);
+      res.render('profile', {
+        bodyClass: "profile",
+        pageTitle: "User Profile",
+        user
+      });
     });
-// Creating an user
-    app.post('/user/new', function (req, res) {
-        User.create(req.body, function (err, user) {
-            console.log(req.body);
-            res.render('article-index', {user: user})
-        });
-    });
+  });
 };

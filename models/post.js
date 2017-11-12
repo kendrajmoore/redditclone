@@ -1,18 +1,13 @@
-const mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const Comment = require('./comment');
 
 const PostSchema = new Schema({
-  title       : String,
-  url         : String,
-  summary     : String,
-  content     : String,
-  comments    : [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
-  subreddit   : { type: String },
-  author      : { type: Schema.Types.ObjectId, ref: 'User' },
-  upVotes     : { type: String },
-  downVotes   : { type: String },
-  voteScore   : { type: Number, default: 0 }
+  title             : { type: String, required: true },
+  url               : { type: String, required: true },
+  summary           : { type: String, required: true },
+  subreddit         : { type: String, required: true },
+  comments          : [Comment.schema]
 });
-
 
 module.exports = mongoose.model('Post', PostSchema);

@@ -1,10 +1,11 @@
 require("dotenv").config();
 const express = require('express')
 const app = express()
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const exphbs  = require('express-handlebars');
 const bodyParser = require('body-parser');
 const jsonwebtoken = require("jsonwebtoken");
+const methodOverride = require('method-override');
 
 const mongoose = require('mongoose');
 // mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/redditclone');
@@ -17,7 +18,9 @@ mongoose.set('debug', true)
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 app.use(cookieParser())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
+app.use(express.static('public'));
 
 const checkAuth = function (req, res, next) {
   console.log("Checking authentication");

@@ -3,14 +3,16 @@
     <head>
         <meta charset="utf-8">
         <title>RedditClone{{title}}</title>
-        <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
         <script rel="script" src="/js/posts.js"></script>
 
     </head>
-    <nav class="navbar navbar-default">
+
+    <nav class="navbar fixed-top navbar-dark bg-dark">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/">
@@ -19,22 +21,23 @@
                 </div>
                     <div class="pull-right">
                     {{#unless currentUser}}
-                        <a href="/posts/new" class="btn btn-default navbar-btn">New Post</a>
+                        <a href="/posts/new" class="btn btn-info navbar-btn">New Post</a>
                     </div>
                     <div class="pull-right">
-                        <a href="/login" class="btn btn-default navbar-btn">Login</a>
+                        <a href="/login" class="btn btn-info
+                         navbar-btn">Login</a>
                     </div>
                     <div class="pull-right">
-                        <a href="/logout" class="btn btn-default navbar-btn">Logout</a>
+                        <a href="/logout" class="btn btn-danger navbar-btn">Logout</a>
                     </div>
                     <div class="pull-right">
-                        <a href="/sign-up" class="btn btn-default navbar-btn">Sign Up</a>
+                        <a href="/sign-up" class="btn btn-info navbar-btn">Sign Up</a>
                     {{/unless}}
                     </div>
             </div>
         </nav>
     <body class="container">
         {{{body}}}
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>
