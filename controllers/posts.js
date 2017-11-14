@@ -10,16 +10,6 @@ module.exports = (app) => {
     res.render('home');
   });
 
-//NEW POST FORM
-  // app.get('/posts/new', (req, res) => {
-  //   const recentUser = req.user;
-  //   if (recentUser === null) {
-  //     return res.redirect('login');
-  //   } else {
-  //       res.render('posts-new');
-  //     })
-  //   })
-
 //VOTING FOR A POST
 
       app.post('/posts/:id/vote-up', (req, res) => {
@@ -81,6 +71,19 @@ module.exports = (app) => {
      }).catch((err) => {
        console.log(err);
      })
+
+  //NEW POST
+
+  app.get('/posts/new', (req, res) => {
+      const recentUser = req.user;
+       let loggedin = "";
+       if (recentUser === null) {
+       return ("Not Logged In");
+       } else {
+      loggedin = "loggedin";
+     res.render('posts-new')
+    }
+   });
 
   //Getting only Subreddit Posts
   app.get('/g/:subreddit', (req, res) => {

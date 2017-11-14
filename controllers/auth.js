@@ -6,7 +6,7 @@ module.exports = (app) => {
 
   // SIGN UP
   app.get('sign-up', (req, res) => {
-    res.render('sign-up', {})
+    res.render('sign-up', { user })
   })
 
   //SIGN UP POST
@@ -33,37 +33,27 @@ module.exports = (app) => {
   app.post('/login', (req, res) => {
     const password = req.body.password;
     const username = req.body.username;
-    // ...
+    // FIND USERNAME IN DATABASE
     User.findOne({ username }).then((user) => {
       if (!user) {
         return res.status(401).send({ message: 'Wrong email or password' });
       }
-      // ...
+      //FIND PASSWORD IN THE DATABASE
       User.comparePassword(password, (err, isMatch) => {
-        // ...
+        // CHECK PASSWORD
         if (!isMatch) {
           return res.status(401).send({ message: 'Wrong email or password' });
         }
-        // ...
+        // CREATE USER PASSWORD TOKEN
         const token = jwt.sign({ _id: user._id, username: user.username },
                                 process.env.SECRET, { expiresIn: "60 days" });
 
-        // ...
+        // SETS MAX AGE FOR PASSWORD TOKEN
         res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
         res.redirect('/');
       })
 
-      // User.comparePassword(password, (err, isMatch) => {
-      //   if (!isMatch) {
-      //     return res.status(401).send({ message: 'Wrong email or password' });
-      //   }
-      //   // creates req.user as  { _id: user._id }
-      //   const token = jwt.sign({ _id: user._id, username: user.username },
-      //     process.env.SECRET, { expiresIn: "60 days" });
-      //   res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
-      //   res.redirect('/');
-
-    // ...
+    // ERROR HANDLING
     }).catch((err) => {
          console.log(err);
     });
