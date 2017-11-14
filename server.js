@@ -6,22 +6,21 @@ const exphbs  = require('express-handlebars');
 const bodyParser = require('body-parser');
 const jsonwebtoken = require("jsonwebtoken");
 const methodOverride = require('method-override');
-
+//SET UP MONGOOSE
 const mongoose = require('mongoose');
-// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/redditclone');
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/redditclone', { useMongoClient: true })
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection Error:'))
 mongoose.set('debug', true)
 
-
+//MIDDLEWARE
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
-
+//USER AUTH
 const checkAuth = function (req, res, next) {
   console.log("Checking authentication");
 
@@ -38,7 +37,7 @@ const checkAuth = function (req, res, next) {
 
 app.use(checkAuth)
 
-//
+//CONTROLLERS
 require('./controllers/posts.js')(app);
 require('./controllers/auth.js')(app);
 require('./controllers/comments.js')(app);

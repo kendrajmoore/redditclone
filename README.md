@@ -1,3 +1,3 @@
 # redditclone
 
-A clone Reddit
+A clone of Reddit
