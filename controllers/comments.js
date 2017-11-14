@@ -6,16 +6,18 @@ module.exports = (app) => {
 
 
   // CREATE
-  app.post('/posts/:postId/comments', function (req, res) {
-    const comment = new Comment(req.body);
-
-    Post.findById(req.params.postId).populate('comments').exec(function (err, post) {
-      comment.save(function (err, comment) {
+  app.post('/posts/:postId/comments', (req, res) => {
+    const currentUser = req.user;
+    const postId = req.params.postId;
+    Post.findById(postId).then((post) => {
+      const comment = new Comment
+    });
         post.comments.unshift(comment);
         post.save();
 
         return res.redirect(`/posts/` + post._id);
-      })
-    })
-  });
+      }).catch((err) => {
+        console.log(err);
+      });
+
 }
