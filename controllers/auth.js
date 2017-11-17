@@ -6,7 +6,7 @@ module.exports = (app) => {
 
   // SIGN UP
   app.get('sign-up', (req, res) => {
-    res.render('sign-up', { user })
+    res.render('sign-up')
   })
 
   //SIGN UP POST
