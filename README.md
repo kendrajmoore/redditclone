@@ -1,3 +1,3 @@
 # redditclone
 
-A clone of Reddit
+A clone of Reddit for web2
