@@ -6,6 +6,8 @@ const exphbs  = require('express-handlebars');
 const bodyParser = require('body-parser');
 const jsonwebtoken = require("jsonwebtoken");
 const methodOverride = require('method-override');
+
+const expressValidator = require('express-validator');
 //SET UP MONGOOSE
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise
@@ -38,11 +40,15 @@ const checkAuth = function (req, res, next) {
 app.use(checkAuth)
 
 //CONTROLLERS
-require('./controllers/posts.js')(app);
-require('./controllers/auth.js')(app);
-require('./controllers/comments.js')(app);
+require('./controllers/posts')(app);
+require('./controllers/auth')(app);
+require('./controllers/comments')(app);
+require('./controllers/replies')(app);
+require('./controllers/users')(app);
 
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
+
+module.exports = app;
